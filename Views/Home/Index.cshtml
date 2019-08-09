@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if(@ViewBag.message == null){
+<div class="text-center">
+    <form action="Home/Login" method="POST">
+        <label id="username">Username</label>
+        <input name="username" id="username" type="text">
+        <br/>
+        <label id="password">Password</label>
+        <input name="password" id="password" type="password">
+        <br/>
+        <input name="submit" type="submit">
+        
+        <a href="Home/Register">Register</a>
+    </form>
+    <h2>Films</h2>
+<table class="table">
+  <tr>
+    <th>Film ID</th>
+    <th>Title</th>
+   
+  </tr>
+  @{
+      User newUser = new User();
+  }
+  @foreach (var user in ViewBag.users)
+  {
+    <tr>
+      <td>
+        @user.UserId
+      </td>
+      <td>
+        @user.UserName
+      </td>
+    
+    </tr>
+  }
+</table>
+</div>
+}else{
+    <h1 class="display-4">Welcome @ViewBag.message</h1>
+    <a href="Home/Logout">Logout</a>
+}
+
